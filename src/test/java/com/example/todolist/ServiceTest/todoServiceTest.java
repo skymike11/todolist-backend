@@ -2,7 +2,9 @@ package com.example.todolist.ServiceTest;
 
 import com.example.repository.TodoRepository;
 import com.example.todolist.dto.TodoRequestDto;
+import com.example.todolist.dto.TodoResponseDto;
 import com.example.todolist.service.impl.TodoServiceImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -46,5 +48,16 @@ public class todoServiceTest {
 
         //then
         verify(todoRepository).deleteById(todoId);
+    }
+
+    @Test
+    void should_return_employee_response_dto_when_add_1_employee_given_1_employee_request_dto() {
+        //given
+        TodoRequestDto todoRequestDto = new TodoRequestDto("111", false);
+        //when
+        TodoResponseDto todoResponseDto = todoService.addTodo(todoRequestDto);
+
+        //then
+        Assertions.assertEquals("111", todoResponseDto.getContent());
     }
 }
