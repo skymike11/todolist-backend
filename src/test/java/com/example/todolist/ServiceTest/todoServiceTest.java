@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -35,5 +36,15 @@ public class todoServiceTest {
         assertEquals(0,todoService.getAllTodo().size());
     }
 
+    @Test
+    void should_return_empty_todo_when_delete_given_1_todo_id() {
+        //given
+        int todoId = 1;
 
+        //when
+        todoService.deleteTodoById(todoId);
+
+        //then
+        verify(todoRepository).deleteById(todoId);
+    }
 }
