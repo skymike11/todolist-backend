@@ -8,4 +8,5 @@ import java.util.List;
 public interface TodoService {
     List<Todo> getAllTodo();
     void addTodo(TodoRequestDto todoRequestDto);
+    void deleteTodoById(int id);
 }
