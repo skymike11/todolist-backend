@@ -5,31 +5,28 @@ import com.example.todolist.dto.TodoResponseDto;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "todo")
-public class Todo {
+@Table(name = "todoentity")
+public class TodoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String content;
     private boolean status;
 
-    public Todo(int id, String content, boolean statys) {
+    public TodoEntity(int id, String content, boolean statys) {
         this.id = id;
         this.content = content;
         this.status = statys;
     }
 
-    public Todo(String content, boolean statys) {
+    public TodoEntity(String content, boolean statys) {
         this.content = content;
         this.status = statys;
     }
 
-    public Todo() {
+    public TodoEntity() {
     }
 
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;

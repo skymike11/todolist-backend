@@ -1,6 +1,6 @@
 package com.example.todolist.dto;
 
-import com.example.todolist.entity.Todo;
+import com.example.todolist.entity.TodoEntity;
 
 public class TodoRequestDto {
     private int id;
@@ -45,8 +45,8 @@ public class TodoRequestDto {
         this.status = status;
     }
 
-    public Todo toEntity() {
-        return new Todo(content, status);
+    public TodoEntity toEntity() {
+        return new TodoEntity(content, status);
     }
 
     public TodoResponseDto toTodoResponseDto () {

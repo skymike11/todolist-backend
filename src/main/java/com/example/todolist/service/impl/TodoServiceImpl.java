@@ -1,25 +1,22 @@
 package com.example.todolist.service.impl;
 
-import com.example.repository.TodoRepository;
+import com.example.todolist.repository.TodoRepository;
 import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
-import com.example.todolist.entity.Todo;
+import com.example.todolist.entity.TodoEntity;
 import com.example.todolist.service.TodoService;
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class TodoServiceImpl implements TodoService {
-    private final TodoRepository todoRepository;
-
-    public TodoServiceImpl(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
-    }
-
+    @Autowired
+    private TodoRepository todoRepository;
 
     @Override
-    public List<Todo> getAllTodo() {
+    public List<TodoEntity> getAllTodo() {
         return todoRepository.findAll();
     }
 
@@ -35,8 +32,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public TodoResponseDto updateTodo(Todo todo) {
-        todoRepository.save(todo);
-        return todo.toTodoResponseDto();
+    public TodoResponseDto updateTodo(int todoId, TodoEntity todoEntity) {
+        todoRepository.save(todoEntity);
+        return todoEntity.toTodoResponseDto();
     }
 }
