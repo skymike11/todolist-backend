@@ -1,9 +1,9 @@
 package com.example.todolist.ServiceTest;
 
-import com.example.repository.TodoRepository;
+import com.example.todolist.repository.TodoRepository;
 import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
-import com.example.todolist.entity.Todo;
+import com.example.todolist.entity.TodoEntity;
 import com.example.todolist.service.impl.TodoServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -67,10 +66,10 @@ public class todoServiceTest {
     void should_return_true_when_update_given_todo_id_and_todo_request_dto() {
         //given
         int todoId = 1;
-        Todo todo = new TodoRequestDto(todoId, "111", false).toEntity();
-        when(todoRepository.save(todo)).thenReturn(todo);
+        TodoEntity todoEntity = new TodoRequestDto(todoId, "111", false).toEntity();
+        when(todoRepository.save(todoEntity)).thenReturn(todoEntity);
         //when
-        TodoResponseDto todoResponseDto = todoService.updateTodo(todo);
+        TodoResponseDto todoResponseDto = todoService.updateTodo(todoId, todoEntity);
         //then
         Assertions.assertEquals("111", todoResponseDto.getContent());
 

@@ -1,9 +1,9 @@
 package com.example.todolist.mapperTest;
 
-import com.example.mapper.Mapper;
+import com.example.todolist.mapper.Mapper;
 import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
-import com.example.todolist.entity.Todo;
+import com.example.todolist.entity.TodoEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,22 +16,22 @@ public class todoMapperTest {
     void should_return_responseDto_id_1_when_use_mapper_given_id_1_todo() {
         //given
         int todoId = 1;
-        Todo todo = new Todo(todoId,"111", false);
+        TodoEntity todoEntity = new TodoEntity(todoId,"111", false);
         //when
-        TodoResponseDto todoResponseDto = Mapper.entityToResponseDto(todo);
+        TodoResponseDto todoResponseDto = Mapper.entityToResponseDto(todoEntity);
         //then
         assertEquals(todoId, todoResponseDto.getId());
     }
 
     @Test
-    void should_return_todo_id_1_when_use_mapper_given_id_1_todoRequestDto() {
+    void should_return_content_111_when_use_mapper_given_content_111_todoRequestDto() {
         //given
-        int todoId = 1;
-        TodoRequestDto todoRequestDto = new TodoRequestDto(todoId, "111", false);
+        String content = "111";
+        TodoRequestDto todoRequestDto = new TodoRequestDto(1, content, false);
         //when
-        Todo todo = Mapper.resuestToEntity(todoRequestDto);
+        TodoEntity todoEntity = Mapper.resuestToEntity(todoRequestDto);
         //then
-        assertEquals(1, todo.getId());
+        assertEquals(content, todoEntity.getContent());
     }
 
 
