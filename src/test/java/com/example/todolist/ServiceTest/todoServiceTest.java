@@ -3,6 +3,7 @@ package com.example.todolist.ServiceTest;
 import com.example.repository.TodoRepository;
 import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
+import com.example.todolist.entity.Todo;
 import com.example.todolist.service.impl.TodoServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -63,16 +64,15 @@ public class todoServiceTest {
     }
 
     @Test
-    void should_return_new_todo_when_update_given_todo_id_and_todo_request_dto() {
+    void should_return_true_when_update_given_todo_id_and_todo_request_dto() {
         //given
         int todoId = 1;
-        TodoRequestDto todoRequestDto = new TodoRequestDto(1, "111", false);
-        when(todoRepository.findById(todoId)).thenReturn(Optional.of(todoRequestDto.toEntity()));
-        todoRequestDto.setStatus(true);
-        when(todoRepository.save(todoRequestDto.toEntity())).thenReturn(todoRequestDto.toEntity());
+        Todo todo = new TodoRequestDto(todoId, "111", false).toEntity();
+        when(todoRepository.save(todo)).thenReturn(todo);
         //when
-        TodoResponseDto todoResponseDto = todoService.updateTodo(todoRequestDto);
-        assertTrue(todoResponseDto.getStatus());
+        TodoResponseDto todoResponseDto = todoService.updateTodo(todo);
+        //then
+        Assertions.assertEquals("111", todoResponseDto.getContent());
 
     }
 }

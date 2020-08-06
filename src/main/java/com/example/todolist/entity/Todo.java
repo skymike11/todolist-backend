@@ -1,5 +1,7 @@
 package com.example.todolist.entity;
 
+import com.example.todolist.dto.TodoResponseDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,17 +11,17 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content;
-    private boolean statys;
+    private boolean status;
 
     public Todo(int id, String content, boolean statys) {
         this.id = id;
         this.content = content;
-        this.statys = statys;
+        this.status = statys;
     }
 
     public Todo(String content, boolean statys) {
         this.content = content;
-        this.statys = statys;
+        this.status = statys;
     }
 
     public Todo() {
@@ -41,11 +43,15 @@ public class Todo {
         this.content = content;
     }
 
-    public boolean isStatys() {
-        return statys;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setStatys(boolean statys) {
-        this.statys = statys;
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public TodoResponseDto toTodoResponseDto () {
+        return new TodoResponseDto(content, status);
     }
 }

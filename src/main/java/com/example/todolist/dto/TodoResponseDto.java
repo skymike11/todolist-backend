@@ -17,7 +17,7 @@ public class TodoResponseDto {
         this.content = content;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
