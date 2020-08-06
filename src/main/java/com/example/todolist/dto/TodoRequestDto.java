@@ -48,4 +48,8 @@ public class TodoRequestDto {
     public Todo toEntity() {
         return new Todo(content, status);
     }
+
+    public TodoResponseDto toTodoResponseDto () {
+        return new TodoResponseDto(content, status);
+    }
 }

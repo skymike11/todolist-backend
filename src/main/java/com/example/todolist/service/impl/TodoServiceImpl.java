@@ -2,8 +2,10 @@ package com.example.todolist.service.impl;
 
 import com.example.repository.TodoRepository;
 import com.example.todolist.dto.TodoRequestDto;
+import com.example.todolist.dto.TodoResponseDto;
 import com.example.todolist.entity.Todo;
 import com.example.todolist.service.TodoService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +24,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void addTodo(TodoRequestDto todoRequestDto) {
+    public TodoResponseDto addTodo(TodoRequestDto todoRequestDto) {
         todoRepository.save(todoRequestDto.toEntity());
+        return todoRequestDto.toTodoResponseDto();
     }
 
     @Override
