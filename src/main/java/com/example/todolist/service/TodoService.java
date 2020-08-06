@@ -1,4 +1,11 @@
 package com.example.todolist.service;
 
-public class TodoService {
+import com.example.todolist.dto.TodoRequestDto;
+import com.example.todolist.entity.Todo;
+
+import java.util.List;
+
+public interface TodoService {
+    List<Todo> getAllTodo();
+    void addTodo(TodoRequestDto todoRequestDto);
 }
