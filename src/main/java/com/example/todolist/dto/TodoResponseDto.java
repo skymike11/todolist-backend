@@ -1,6 +1,7 @@
 package com.example.todolist.dto;
 
 public class TodoResponseDto {
+    private int id;
     private String content;
     private boolean status;
 
@@ -28,4 +29,17 @@ public class TodoResponseDto {
     public TodoResponseDto() {
     }
 
+    public TodoResponseDto(int id, String content, boolean status) {
+        this.id = id;
+        this.content = content;
+        this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

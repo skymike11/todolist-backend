@@ -4,3 +4,6 @@ CREATE TABLE todo (
   content VARCHAR(100) NOT NULL,
   status BOOLEAN DEFAULT FALSE
 );
+
+INSERT INTO todo (content, status) VALUES
+ ('test', false),
