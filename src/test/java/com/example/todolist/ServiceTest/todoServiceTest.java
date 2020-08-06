@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -59,5 +60,19 @@ public class todoServiceTest {
 
         //then
         Assertions.assertEquals("111", todoResponseDto.getContent());
+    }
+
+    @Test
+    void should_return_new_todo_when_update_given_todo_id_and_todo_request_dto() {
+        //given
+        int todoId = 1;
+        TodoRequestDto todoRequestDto = new TodoRequestDto(1, "111", false);
+        when(todoRepository.findById(todoId)).thenReturn(Optional.of(todoRequestDto.toEntity()));
+        todoRequestDto.setStatus(true);
+        when(todoRepository.save(todoRequestDto.toEntity())).thenReturn(todoRequestDto.toEntity());
+        //when
+        TodoResponseDto todoResponseDto = todoService.updateTodo(todoRequestDto);
+        assertTrue(todoResponseDto.getStatus());
+
     }
 }
