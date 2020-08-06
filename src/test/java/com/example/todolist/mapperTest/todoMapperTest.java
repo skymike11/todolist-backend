@@ -1,6 +1,7 @@
 package com.example.todolist.mapperTest;
 
 import com.example.mapper.Mapper;
+import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
 import com.example.todolist.entity.Todo;
 import org.junit.jupiter.api.Test;
@@ -15,12 +16,25 @@ public class todoMapperTest {
     void should_return_responseDto_id_1_when_use_mapper_given_id_1_todo() {
         //given
         int todoId = 1;
-        Todo todo = new Todo(1,"111", false);
+        Todo todo = new Todo(todoId,"111", false);
         //when
         TodoResponseDto todoResponseDto = Mapper.entityToResponseDto(todo);
         //then
-        assertEquals(1, todoResponseDto.getId());
+        assertEquals(todoId, todoResponseDto.getId());
     }
+
+    @Test
+    void should_return_todo_id_1_when_use_mapper_given_id_1_todoRequestDto() {
+        //given
+        int todoId = 1;
+        TodoRequestDto todoRequestDto = new TodoRequestDto(todoId, "111", false);
+        //when
+        Todo todo = Mapper.resuestToEntity(todoRequestDto);
+        //then
+        assertEquals(1, todo.getId());
+    }
+
+
 
 
 }
